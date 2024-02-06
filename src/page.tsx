@@ -1,11 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import "./App.css";
+import emailjs from "emailjs-com";
 
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
   const yesButtonSize = noCount * 10 + 16;
+
+  // Get email
+  const queryParameters = new URLSearchParams(window.location.search);
+  const email = queryParameters.get("email");
 
   const handleNoClick = () => {
     setNoCount(noCount + 1);
@@ -34,6 +39,30 @@ export default function Page() {
     return phrases[Math.min(noCount, phrases.length - 1)];
   };
 
+  const sendEmail = () => {
+    const templateParams = {
+      to_email: email, // Change this to the recipient's email address
+      message:
+        "The user has accepted your Valentine request!\nHe/She pressed no " +
+        noCount +
+        " times.", // Customize the email message
+    };
+
+    emailjs
+      .send(
+        "service_izhqfqu", // Replace with your email service ID
+        "template_ms4kqbp", // Replace with your email template ID
+        templateParams,
+        "sxmgFIru-gZZfY5sA", // Replace with your user ID
+      )
+      .then((response) => {
+        console.log("Email sent successfully:", response);
+      })
+      .catch((error) => {
+        console.error("Email send error:", error);
+      });
+  };
+
   return (
     <div className="container">
       {yesPressed ? (
@@ -49,15 +78,18 @@ export default function Page() {
             alt=""
           />
           <h1 className="textTitle">Will you be my Valentine?</h1>
-          <div>
+          <div className="buttonDiv">
             <button
               className="yesButton"
               style={{
                 fontSize: yesButtonSize,
-                width: yesButtonSize * 3,
+                //width: yesButtonSize * 3,
                 height: yesButtonSize * 2,
               }}
-              onClick={() => setYesPressed(true)}
+              onClick={() => {
+                setYesPressed(true);
+                sendEmail();
+              }}
             >
               Yes
             </button>

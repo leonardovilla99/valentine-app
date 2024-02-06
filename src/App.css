@@ -16,22 +16,25 @@ body {
     text-align: center;
     margin-top: 20px;
     font-size: 30px;
-    padding-left: 61px;
 }
 .yesButton {
     font-family: "Single Day", cursive;
-    margin-right: 20px;
     background-color: white;
-    border-radius: 15%;
+    border-radius: 20px;
     color: #dc2d52;
     border-width: 0px;
+    margin: 10px 20px;
 }
 .noButton {
     font-family: "Single Day", cursive;
     background-color: white;
-    border-radius: 15%;
+    border-radius: 20px;
     color: #dc2d52;
     border-width: 0px;
     height: 32px;
     font-size: 16px;
+    margin: 10px 20px;
+}
+.buttonDiv {
+    display: grid;
 }
