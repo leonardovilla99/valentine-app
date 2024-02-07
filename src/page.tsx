@@ -6,7 +6,7 @@ import emailjs from "emailjs-com";
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
-  const yesButtonSize = noCount * 10 + 16;
+  const yesButtonSize = noCount * 5 + 16;
 
   // Get email
   const queryParameters = new URLSearchParams(window.location.search);
@@ -48,19 +48,23 @@ export default function Page() {
         " times.", // Customize the email message
     };
 
-    emailjs
-      .send(
-        "service_izhqfqu", // Replace with your email service ID
-        "template_ms4kqbp", // Replace with your email template ID
-        templateParams,
-        "sxmgFIru-gZZfY5sA", // Replace with your user ID
-      )
-      .then((response) => {
-        console.log("Email sent successfully:", response);
-      })
-      .catch((error) => {
-        console.error("Email send error:", error);
-      });
+    if (email !== null) {
+      emailjs
+        .send(
+          "service_izhqfqu", // Replace with your email service ID
+          "template_ms4kqbp", // Replace with your email template ID
+          templateParams,
+          "sxmgFIru-gZZfY5sA", // Replace with your user ID
+        )
+        .then((response) => {
+          console.log("Email sent successfully:", response);
+        })
+        .catch((error) => {
+          console.error("Email send error:", error);
+        });
+    } else {
+      console.log("No email");
+    }
   };
 
   return (

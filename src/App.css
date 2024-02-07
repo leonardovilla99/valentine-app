@@ -23,7 +23,8 @@ body {
     border-radius: 20px;
     color: #dc2d52;
     border-width: 0px;
-    margin: 10px 20px;
+    width: 90%;
+    margin: 10px 5%;
 }
 .noButton {
     font-family: "Single Day", cursive;
@@ -33,7 +34,8 @@ body {
     border-width: 0px;
     height: 32px;
     font-size: 16px;
-    margin: 10px 20px;
+    width: 90%;
+    margin: 10px 5%;
 }
 .buttonDiv {
     display: grid;
